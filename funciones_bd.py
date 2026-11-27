@@ -48,7 +48,10 @@ def cargar_monto_diario():
         # Pista: INSERT INTO resumen_diario (fecha, monto_total) VALUES (?, ?)
         pass
         monto = 0.0
-        
+    
+        cursor.execute("INSERT INTO resumen_diario (fecha, monto_total) VALUES (?, ?)",
+    (hoy, monto))
+    conexion.commit()
     conexion.close()
     return monto
 
@@ -60,6 +63,6 @@ def guardar_monto_diario(nuevo_monto):
     
     # TODO 4: Actualiza el campo 'monto_total' con 'nuevo_monto' para la fecha 'hoy'.
     # Pista: UPDATE resumen_diario SET monto_total = ? WHERE fecha = ?
-    
+    cursor.execute ("UPDATE resumen_diario SET monto_total = ? WHERE fecha = ? ", (nuevo_monto, hoy))
     conexion.commit()
     conexion.close()
